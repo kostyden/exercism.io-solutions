@@ -53,7 +53,10 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="difference-of-squares\DifferenceOfSquares.fs" />
     <Compile Include="difference-of-squares\DifferenceOfSquaresTest.fs" />
-    <None Include="difference-of-squares\README.md" />
+    <Content Include="difference-of-squares\README-difference-of-squares.md" />
+    <Compile Include="rna-transcription\RNATranscription.fs" />
+    <Compile Include="rna-transcription\RNATranscriptionTest.fs" />
+    <Content Include="rna-transcription\README-rna-transcription.md" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
