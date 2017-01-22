@@ -1,19 +1,13 @@
 ﻿module DifferenceOfSquares
 
 let squareOfSums number = 
-    match number with
-    | 5 -> 225
-    | 10 -> 3025
-    | 100 -> 25502500
+    let sum = {1..number} |> Seq.sum
+    sum * sum
 
 let sumOfSquares number = 
-    match number with
-    | 5 -> 55
-    | 10 -> 385
-    | 100 -> 338350
+    {1..number} |> Seq.sumBy(fun value -> value * value)
 
 let difference number = 
-    match number with
-    | 5 -> 170
-    | 10 -> 2640
-    | 100 -> 25164150
+    let square = squareOfSums number
+    let sum = sumOfSquares number
+    square - sum
