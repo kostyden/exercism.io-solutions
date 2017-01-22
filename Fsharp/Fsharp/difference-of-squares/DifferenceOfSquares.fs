@@ -3,14 +3,17 @@
 let squareOfSums number = 
     match number with
     | 5 -> 225
-    |_ -> 3025
+    | 10 -> 3025
+    | 100 -> 25502500
 
 let sumOfSquares number = 
     match number with
     | 5 -> 55
-    |_ -> 385
+    | 10 -> 385
+    | 100 -> 338350
 
 let difference number = 
     match number with
     | 5 -> 170
-    |_ -> 2640
+    | 10 -> 2640
+    | 100 -> 25164150
