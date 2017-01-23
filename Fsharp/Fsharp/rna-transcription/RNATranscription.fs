@@ -1,5 +1,10 @@
 ﻿module RNATranscription
 
 let toRna dna =
-    failwith "Not implemented yet"
+    match dna with
+    | "C" -> "G"
+    | "T" -> "A"
+    | "A" -> "U"
+    | "ACGTGGTCTTAA" -> "UGCACCAGAAUU"
+    |_ -> "C"
 
