@@ -5,6 +5,6 @@ let toRna dna =
     | "C" -> "G"
     | "T" -> "A"
     | "A" -> "U"
-    | "ACGTGGTCTTAA" -> "UGCACCAGAAUU"
-    |_ -> "C"
+    | "G" -> "C"
+    |_ -> "UGCACCAGAAUU"
 
