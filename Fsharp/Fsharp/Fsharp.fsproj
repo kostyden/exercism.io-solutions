@@ -60,6 +60,7 @@
     <Content Include="packages.config" />
     <Compile Include="sum-of-multiples\SumOfMultiples.fs" />
     <Compile Include="sum-of-multiples\SumOfMultiplesTest.fs" />
+    <None Include="sum-of-multiples\README-sum-of-multiples.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
