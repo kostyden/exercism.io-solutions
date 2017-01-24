@@ -58,6 +58,8 @@
     <Compile Include="rna-transcription\RNATranscriptionTest.fs" />
     <Content Include="rna-transcription\README-rna-transcription.md" />
     <Content Include="packages.config" />
+    <Compile Include="sum-of-multiples\SumOfMultiples.fs" />
+    <Compile Include="sum-of-multiples\SumOfMultiplesTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
