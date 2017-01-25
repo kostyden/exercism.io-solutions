@@ -1,15 +1,15 @@
 ﻿module SumOfMultiples
 
-let haveMultipleFor possibleMultiple number  = 
+let isFactorOf possibleMultiple number  = 
     possibleMultiple % number = 0
 
-let isMultipleForNumbers numbers possibleMultiple  = 
-    numbers |> Seq.exists(haveMultipleFor possibleMultiple)
+let isMultipleFor factors possibleMultiple  = 
+    factors |> Seq.exists(isFactorOf possibleMultiple)
 
 let possibleMultiples maxMultiple =
     {1 .. maxMultiple - 1}
 
-let sumOfMultiples numbers maxMultiple =    
+let sumOfMultiples factors maxMultiple =    
     possibleMultiples maxMultiple 
-        |> Seq.where(isMultipleForNumbers numbers) 
+        |> Seq.where(isMultipleFor factors) 
         |> Seq.sum
