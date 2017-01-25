@@ -4,6 +4,7 @@ open NUnit.Framework
 open SpaceAge
     
 [<Test>]
+[<Ignore("Remove to run test")>]
 let ``Age on earth`` () =
     let seconds = 1000000000m
     Assert.That(spaceAge Planet.Earth seconds, Is.EqualTo(31.69m))
