@@ -51,6 +51,8 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="bob\Bob.fs" />
+    <Compile Include="bob\BobTest.fs" />
     <Compile Include="hello-world\HelloWorld.fs" />
     <Compile Include="hello-world\HelloWorldTest.fs" />
     <Compile Include="leap\LeapYear.fs" />
