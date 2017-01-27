@@ -54,7 +54,7 @@
     <Compile Include="hello-world\HelloWorld.fs" />
     <Compile Include="hello-world\HelloWorldTest.fs" />
     <Compile Include="leap\LeapYear.fs" />
-    <Compile Include="leap\LeapTest.fs" />
+    <Compile Include="leap\LeapYearTest.fs" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
