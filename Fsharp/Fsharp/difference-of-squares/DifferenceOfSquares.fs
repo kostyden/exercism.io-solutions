@@ -10,7 +10,7 @@ let squareOfSums number =
     generateSequenceTo number |> Seq.sum |> powerTwo
 
 let sumOfSquares number = 
-    generateSequenceTo number |> Seq.sumBy(fun value -> powerTwo value)
+    generateSequenceTo number |> Seq.sumBy(powerTwo)
 
 let difference number = 
     squareOfSums number - sumOfSquares number
