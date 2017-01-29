@@ -8,5 +8,5 @@ let square (number : int) =
     BigInteger.Pow(POWER, number - 1)
 
 let total = 
-    BigInteger.Zero
+    {1 .. 64 } |> Seq.sumBy square
 

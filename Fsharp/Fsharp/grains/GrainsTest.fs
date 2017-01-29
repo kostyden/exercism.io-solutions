@@ -32,6 +32,5 @@ let ``Test square 64`` () =
     Assert.That(square 64, Is.EqualTo(9223372036854775808I))
     
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Test total grains`` () = 
     Assert.That(total, Is.EqualTo(18446744073709551615I))
