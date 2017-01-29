@@ -73,6 +73,8 @@
     <Compile Include="leap\LeapYear.fs" />
     <Compile Include="leap\LeapYearTest.fs" />
     <Content Include="packages.config" />
+    <Compile Include="grains\Grains.fs" />
+    <Compile Include="grains\GrainsTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
