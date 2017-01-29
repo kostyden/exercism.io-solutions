@@ -1,8 +1,12 @@
 ﻿module Grains
 
-let square number = 
-    failwith "Not implemented yet"
+open System.Numerics
 
-let total : int = 
-    failwith "Not implemented yet"
+let POWER = 2I
+
+let square (number : int) = 
+    BigInteger.Pow(POWER, number - 1)
+
+let total = 
+    BigInteger.Zero
 

@@ -75,6 +75,7 @@
     <Content Include="packages.config" />
     <Compile Include="grains\Grains.fs" />
     <Compile Include="grains\GrainsTest.fs" />
+    <None Include="grains\README-grains.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
