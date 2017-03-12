@@ -80,6 +80,9 @@
     <Compile Include="hamming\Hamming.fs" />
     <Compile Include="hamming\HammingTest.fs" />
     <None Include="hamming\README.md" />
+    <Compile Include="nucleotide-count\NucleotideCount.fs" />
+    <Compile Include="nucleotide-count\NucleotideCountTest.fs" />
+    <None Include="nucleotide-count\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
