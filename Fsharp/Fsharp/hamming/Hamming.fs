@@ -2,10 +2,12 @@
 
 open System
 
+let private isDifferentNucleotides (first, second) = 
+    first <> second
+
 let compute firstStrand secondStrand =
-    match String.length firstStrand with
-    | 7 -> 2
-    | 5 -> 1
-    | 12 -> 9
-    | 3 -> 3
-    |_ -> 0
+    Seq.zip firstStrand secondStrand 
+        |> Seq.filter (isDifferentNucleotides) 
+        |> Seq.length
+
+    
