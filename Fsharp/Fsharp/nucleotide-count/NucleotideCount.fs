@@ -13,4 +13,9 @@ let nucleotideCounts strand =
     values |> Seq.map (fun(value) -> (value, defaultArg (existed |> Map.tryFind value) 0)) |> Map.ofSeq
 
 let count nucleotide strand = 
-    0
+    let values = ['A'; 'C'; 'G'; 'T'] |> Set.ofSeq
+    if (values |> Set.contains nucleotide) then
+        strand |> Seq.filter ((=) nucleotide) |> Seq.length
+    else
+        failwith "Invalid nucleotide literal"
+

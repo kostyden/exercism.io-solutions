@@ -2,12 +2,12 @@
 
 open System
 
-let private isDifferentNucleotides (first, second) = 
+let private areDifferentNucleotides (first, second) = 
     first <> second
 
 let compute firstStrand secondStrand =
     Seq.zip firstStrand secondStrand 
-        |> Seq.filter (isDifferentNucleotides) 
-        |> Seq.length
+    |> Seq.filter areDifferentNucleotides
+    |> Seq.length
 
     

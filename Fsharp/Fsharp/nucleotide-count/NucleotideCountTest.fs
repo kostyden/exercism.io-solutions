@@ -16,7 +16,6 @@ let ``Has no adenosine`` () =
     Assert.That(count 'A' strand, Is.EqualTo(0))
     
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Repetitive cytidine gets counts`` () =
     let strand = "CCCCC"
     Assert.That(count 'C' strand, Is.EqualTo(5))
@@ -28,13 +27,11 @@ let ``Repetitive sequence has only guanosine`` () =
     Assert.That(nucleotideCounts strand, Is.EqualTo(expected))
     
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Counts only thymidine`` () =
     let strand = "GGGGTAACCCGG"
     Assert.That(count 'T' strand, Is.EqualTo(1))
     
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Validates nucleotides`` () =
     let strand = "GGTTGG"
     Assert.Throws(fun () -> count 'X' strand |> ignore) |> ignore
