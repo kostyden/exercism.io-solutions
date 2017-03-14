@@ -2,19 +2,36 @@
 
 open System
 
-let nucleotideCounts strand = 
-    let values = ['A'; 'C'; 'G'; 'T']
-    let required = values |> Set.ofSeq
-    let existed = Seq.filter(fun(n) -> required |> Set.exists(fun(key) -> key = n)) strand 
-                    |> Seq.groupBy (fun(n) -> n) 
-                    |> Seq.map (fun(key, group) -> (key, group |> Seq.length))
-                    |> Map.ofSeq
+let private dnaNucleotides = ['A'; 'C'; 'G'; 'T'] |> Set.ofSeq
 
-    values |> Seq.map (fun(value) -> (value, defaultArg (existed |> Map.tryFind value) 0)) |> Map.ofSeq
+let private isDnaNucleotide character =
+    dnaNucleotides |> Set.contains character
+
+let private createNucleotideAmount founded nucleotide  = 
+    let amount = founded |> Map.tryFind nucleotide
+    (nucleotide, defaultArg amount 0)
+
+let private addZeroNucleotides founded = 
+    let toDnaNucleotides = createNucleotideAmount founded
+    dnaNucleotides |> Set.map toDnaNucleotides |> Map.ofSeq
+
+let private toNucleotideAmount (nucleotide, nucleotides) =
+    (nucleotide, nucleotides |> Seq.length)
+
+let private countNucleotides nucleotides = 
+    nucleotides 
+    |> Seq.groupBy (fun(nucleotide) -> nucleotide)
+    |> Seq.map toNucleotideAmount
+    |> Map.ofSeq
+    |> addZeroNucleotides
+
+let nucleotideCounts strand = 
+    strand 
+    |> Seq.filter isDnaNucleotide
+    |> countNucleotides
 
 let count nucleotide strand = 
-    let values = ['A'; 'C'; 'G'; 'T'] |> Set.ofSeq
-    if (values |> Set.contains nucleotide) then
+    if (isDnaNucleotide nucleotide) then
         strand |> Seq.filter ((=) nucleotide) |> Seq.length
     else
         failwith "Invalid nucleotide literal"
