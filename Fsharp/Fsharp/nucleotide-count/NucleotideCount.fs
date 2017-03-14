@@ -20,8 +20,7 @@ let private toNucleotideAmount (nucleotide, nucleotides) =
 
 let private countNucleotides nucleotides = 
     nucleotides 
-    |> Seq.groupBy (fun(nucleotide) -> nucleotide)
-    |> Seq.map toNucleotideAmount
+    |> Seq.countBy(fun(nucleotide) -> nucleotide)
     |> Map.ofSeq
     |> addZeroNucleotides
 
@@ -34,5 +33,5 @@ let count nucleotide strand =
     if (isDnaNucleotide nucleotide) then
         strand |> Seq.filter ((=) nucleotide) |> Seq.length
     else
-        failwith "Invalid nucleotide literal"
+        failwith "Invalid nucleotide character"
 
