@@ -41,3 +41,5 @@ let ``Counts all nucleotides`` () =
     let strand = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
     let expected = [ ( 'A', 20 ); ( 'T', 21 ); ( 'C', 12 ); ( 'G', 17 ) ] |> Map.ofSeq
     Assert.That(nucleotideCounts strand, Is.EqualTo(expected))
+
+// test comment
