@@ -7,26 +7,22 @@ let private dnaNucleotides = ['A'; 'C'; 'G'; 'T'] |> Set.ofSeq
 let private isDnaNucleotide character =
     dnaNucleotides |> Set.contains character
 
-let private createNucleotideAmount founded nucleotide  = 
-    let amount = founded |> Map.tryFind nucleotide
-    (nucleotide, defaultArg amount 0)
-
-let private addZeroNucleotides founded = 
-    let toDnaNucleotides = createNucleotideAmount founded
-    dnaNucleotides |> Set.map toDnaNucleotides |> Map.ofSeq
-
 let private toNucleotideAmount (nucleotide, nucleotides) =
     (nucleotide, nucleotides |> Seq.length)
 
-let private countNucleotides nucleotides = 
-    nucleotides 
+let private countNucleotides nucleotidesWithRequired = 
+    nucleotidesWithRequired 
     |> Seq.countBy(fun(nucleotide) -> nucleotide)
+    |> Seq.map(fun(nucleotide, amount) -> (nucleotide, amount - 1))
     |> Map.ofSeq
-    |> addZeroNucleotides
+
+let private addRequiredNucleotides nucleotides =
+    nucleotides |> Seq.append dnaNucleotides
 
 let nucleotideCounts strand = 
     strand 
     |> Seq.filter isDnaNucleotide
+    |> addRequiredNucleotides
     |> countNucleotides
 
 let count nucleotide strand = 
