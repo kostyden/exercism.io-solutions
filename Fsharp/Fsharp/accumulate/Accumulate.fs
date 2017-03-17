@@ -2,9 +2,10 @@
 
 open System
 
-let rec accumulate select items = 
-    match items with
-    | [] -> []
-    | item :: list -> select item :: accumulate select list
+let accumulate map items = 
+    let rec select next = function
+        | [] -> next []
+        | item :: list -> select(fun tempList -> next(map item::tempList)) list
+    select (fun item -> item) items
 
 
