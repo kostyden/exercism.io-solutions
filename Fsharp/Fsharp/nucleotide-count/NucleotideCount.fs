@@ -3,31 +3,29 @@
 open System
 
 let private dnaNucleotides = ['A'; 'C'; 'G'; 'T'] |> Set.ofSeq
+    
+let private addDefaultNucleotides nucleotides =
+    nucleotides |> Seq.append dnaNucleotides
 
-let private isDnaNucleotide character =
-    dnaNucleotides |> Set.contains character
+let private countNucleotides nucleotides =
+    nucleotides |> Seq.countBy(fun(nucleotide) -> nucleotide)
 
-let private createNucleotideAmount founded nucleotide  = 
-    let amount = founded |> Map.tryFind nucleotide
-    (nucleotide, defaultArg amount 0)
+let private removeDefaultNucleotide (nucleotide, amount) =
+    (nucleotide, amount - 1)
 
-let private addZeroNucleotides founded = 
-    let toDnaNucleotides = createNucleotideAmount founded
-    dnaNucleotides |> Set.map toDnaNucleotides |> Map.ofSeq
-
-let private toNucleotideAmount (nucleotide, nucleotides) =
-    (nucleotide, nucleotides |> Seq.length)
-
-let private countNucleotides nucleotides = 
+let private removeDefaultNucleotides nucleotides =
     nucleotides 
-    |> Seq.countBy(fun(nucleotide) -> nucleotide)
-    |> Map.ofSeq
-    |> addZeroNucleotides
+    |> Seq.map removeDefaultNucleotide
 
 let nucleotideCounts strand = 
     strand 
-    |> Seq.filter isDnaNucleotide
+    |> addDefaultNucleotides
     |> countNucleotides
+    |> removeDefaultNucleotides
+    |> Map.ofSeq
+
+let private isDnaNucleotide character =
+    dnaNucleotides |> Set.contains character
 
 let count nucleotide strand = 
     if (isDnaNucleotide nucleotide) then

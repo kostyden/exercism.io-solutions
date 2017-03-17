@@ -83,6 +83,9 @@
     <Compile Include="nucleotide-count\NucleotideCount.fs" />
     <Compile Include="nucleotide-count\NucleotideCountTest.fs" />
     <None Include="nucleotide-count\README.md" />
+    <Compile Include="accumulate\Accumulate.fs" />
+    <Compile Include="accumulate\AccumulateTest.fs" />
+    <None Include="accumulate\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
