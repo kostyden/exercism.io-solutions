@@ -1,5 +1,10 @@
 ﻿module Accumulate
 
-let accumulate accumulator items = 
-    items
+open System
+
+let rec accumulate select items = 
+    match items with
+    | [] -> []
+    | item :: list -> select item :: accumulate select list
+
 
