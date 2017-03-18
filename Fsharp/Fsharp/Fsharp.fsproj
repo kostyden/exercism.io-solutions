@@ -88,6 +88,7 @@
     <None Include="accumulate\README.md" />
     <Compile Include="raindrops\Raindrops.fs" />
     <Compile Include="raindrops\RaindropsTest.fs" />
+    <None Include="raindrops\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
