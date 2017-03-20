@@ -2,20 +2,20 @@
 
 type Rule = { factor: int; text: string }
 
-type Data = { number: int; current: option<string> }
-
-let private addText text origin = Option.foldBack (+) origin text |> Some
-
-let private applyRule rule input = 
-    match input.number % rule.factor with
-    | 0 -> { input with current = input.current |> addText rule.text }
-    | _ -> input     
+let private applyFor number rule  = 
+    match number % rule.factor with
+    | 0 -> Some rule.text
+    | _ -> None   
     
-let private generateOutput result = defaultArg result.current (string result.number)
+let private generateOutput defaultIfEmpty appliedResults = 
+    match appliedResults with
+    | [] -> defaultIfEmpty
+    | _ -> String.concat "" appliedResults    
 
 let convertWithRules rules number =
-    let applyRules = rules |> Seq.map (fun rule -> applyRule rule) |> Seq.reduce(>>)
-    applyRules { number = number; current = None } |> generateOutput
+    rules 
+    |> List.choose (fun rule -> rule |> applyFor number )
+    |> generateOutput (string number)
 
 let convert number = 
     let rules = [ 
