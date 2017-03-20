@@ -1,13 +1,22 @@
 ﻿module Raindrops
 
-let convert number = 
-    match number % 3, number % 5, number % 7 with
-    | 0,0,0 -> "PlingPlangPlong"
-    | 0,0,_ -> "PlingPlang"
-    | _,0,0 -> "PlangPlong"
-    | 0,_,0 -> "PlingPlong"
-    | 0,_,_ -> "Pling"
-    | _,0,_ -> "Plang"
-    | _,_,0 -> "Plong"
-    | _,_,_ -> string number
+type Rule = { number: int; text: string }
+
+let printAndReturn value =
+    printfn "%A" value
+    value
+
+let convertWithRules rules number =
+    let total = rules 
+                |> Seq.map (fun rule -> if number % rule.number = 0 then Some rule.text else None) 
+                |> printAndReturn
+                |> Seq.fold (fun initial result -> 
+                                 match result with
+                                 | Some text -> Some ((defaultArg initial "") + text)
+                                 | None -> initial) None
+
+    let final = defaultArg total (string number)
+    printAndReturn final
+
+let convert number = convertWithRules [ { number = 3; text = "Pling" }; { number = 5; text = "Plang" }; { number = 7; text = "Plong" }] number
 
