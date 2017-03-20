@@ -1,22 +1,31 @@
 ﻿module Raindrops
 
-type Rule = { number: int; text: string }
+type Rule = { factor: int; text: string }
 
-let printAndReturn value =
-    printfn "%A" value
-    value
+type Data = { number: int; current: option<string> }
+
+let private addText text data = 
+    let newText = 
+        match data.current with
+        | Some origin -> origin + text
+        | None -> text
+    { data with current = Some newText }
+
+let private applyRule rule input = 
+    if input.number % rule.factor = 0 then input |> addText rule.text else input     
+    
+let private generateOutput result = defaultArg result.current (string result.number)
+    
+let private applyRules rules =
+    rules 
+    |> Seq.map (fun rule -> applyRule rule)     
+    |> Seq.reduce(>>)
 
 let convertWithRules rules number =
-    let total = rules 
-                |> Seq.map (fun rule -> if number % rule.number = 0 then Some rule.text else None) 
-                |> printAndReturn
-                |> Seq.fold (fun initial result -> 
-                                 match result with
-                                 | Some text -> Some ((defaultArg initial "") + text)
-                                 | None -> initial) None
+    let applyAll = applyRules rules
+    applyAll { number = number; current = None } |> generateOutput
 
-    let final = defaultArg total (string number)
-    printAndReturn final
-
-let convert number = convertWithRules [ { number = 3; text = "Pling" }; { number = 5; text = "Plang" }; { number = 7; text = "Plong" }] number
+let convert number = 
+    let rules = [ { factor = 3; text = "Pling" }; { factor = 5; text = "Plang" }; { factor = 7; text = "Plong" }]
+    convertWithRules rules number
 
