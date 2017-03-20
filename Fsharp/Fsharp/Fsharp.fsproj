@@ -89,6 +89,7 @@
     <Compile Include="raindrops\Raindrops.fs" />
     <Compile Include="raindrops\RaindropsTest.fs" />
     <None Include="raindrops\README.md" />
+    <Compile Include="grade-school\GradeSchool.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
