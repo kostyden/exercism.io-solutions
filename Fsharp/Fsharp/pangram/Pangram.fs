@@ -20,7 +20,6 @@ let private toSetOfAlphabetCharacters input =
     |> Seq.choose(alphabetCharacter)
     |> Set.ofSeq
     
-
 let isPangram input = 
     input
     |> toSetOfAlphabetCharacters
