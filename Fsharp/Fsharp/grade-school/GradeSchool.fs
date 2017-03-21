@@ -1,14 +1,18 @@
 ﻿module GradeSchool
 
-let empty () = 
-    failwith "Not implemented"
+let empty = List.empty
 
-let add name number school = 
-    failwith "Not implemented"
+let add name gradeNumber school = 
+    (name, gradeNumber) :: school
 
-let grade number school = 
-    failwith "Not implemented"
+let grade gradeNumber school = 
+    school 
+    |> List.filter (fun (name, number) -> number = gradeNumber) 
+    |> List.map fst
+    |> List.sort
 
 let roster school = 
-    failwith "Not implemented"
+    school
+    |> List.groupBy snd
+    |> List.map (fun (grade, students) -> (grade, students |> List.map fst))
 
