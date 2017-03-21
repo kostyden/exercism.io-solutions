@@ -51,14 +51,15 @@ let ``Grade returns an empty list if there are no students in that grade`` () =
 [<Test>]
 let ``Student names and grades in roster are sorted`` () =
     let school =
-        empty        
+        empty       
+        |> add "Jennifer" 3
+        |> add "Kyle" 3
         |> add "Jennifer" 4
         |> add "Kareem" 6
         |> add "Christopher" 4
-        |> add "Kyle" 3
 
     let expected = 
-        [(3, ["Kyle"]);
+        [(3, ["Kyle"; "Jennifer"]);
          (4, ["Christopher"; "Jennifer"]);
          (6, ["Kareem"])]
 

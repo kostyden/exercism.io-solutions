@@ -22,4 +22,5 @@ let roster school =
     school
     |> List.groupBy gradeNumber
     |> List.map (fun (grade, students) -> (grade, students |> List.map name))
+    |> List.sortBy fst
 
