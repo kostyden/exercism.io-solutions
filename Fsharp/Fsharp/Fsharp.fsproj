@@ -91,6 +91,8 @@
     <None Include="raindrops\README.md" />
     <Compile Include="grade-school\GradeSchool.fs" />
     <Compile Include="grade-school\GradeSchoolTest.fs" />
+    <Compile Include="pangram\Pangram.fs" />
+    <Compile Include="pangram\PangramTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
