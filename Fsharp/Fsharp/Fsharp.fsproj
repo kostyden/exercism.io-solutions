@@ -93,6 +93,7 @@
     <Compile Include="grade-school\GradeSchoolTest.fs" />
     <Compile Include="pangram\Pangram.fs" />
     <Compile Include="pangram\PangramTest.fs" />
+    <None Include="pangram\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
