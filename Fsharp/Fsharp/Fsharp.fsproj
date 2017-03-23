@@ -97,6 +97,8 @@
     <Compile Include="etl\ETL.fs" />
     <Compile Include="etl\ETLTest.fs" />
     <None Include="etl\README.md" />
+    <Compile Include="clock\Clock.fs" />
+    <Compile Include="clock\ClockTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
