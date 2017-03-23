@@ -99,6 +99,7 @@
     <None Include="etl\README.md" />
     <Compile Include="clock\Clock.fs" />
     <Compile Include="clock\ClockTest.fs" />
+    <None Include="clock\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
