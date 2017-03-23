@@ -94,6 +94,8 @@
     <Compile Include="pangram\Pangram.fs" />
     <Compile Include="pangram\PangramTest.fs" />
     <None Include="pangram\README.md" />
+    <Compile Include="etl\ETL.fs" />
+    <Compile Include="etl\ETLTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
