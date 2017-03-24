@@ -83,14 +83,12 @@ let ``Sixty minutes is next hour`` () =
     Assert.That(display clock, Is.EqualTo("02:00"))
 
 [<Test>]   
-[<Ignore("Remove to run test")>]   
 let ``Clocks with same time are equal`` () =
     let clock1 = mkClock 14 30
     let clock2 = mkClock 14 30
     Assert.That(clock1, Is.EqualTo(clock2))
 
 [<Test>]   
-[<Ignore("Remove to run test")>]   
 let ``Overflown clocks with same time are equal`` () =
     let clock1 = mkClock 14 30
     let clock2 = mkClock 38 30

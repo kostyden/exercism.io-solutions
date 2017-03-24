@@ -6,9 +6,9 @@ let mkClock hour minute =
     { Hours = (hour + minute / 60) % 24; Minutes = minute % 60 }
 
 let add minutes clock = 
-    let hours = (clock.Hours + (minutes / 60)) % 24
-    let minutesToAdd = minutes % 60
-    { Hours = hours; Minutes = clock.Minutes + minutesToAdd }
+    let hours = (clock.Hours + ((clock.Minutes + minutes) / 60)) % 24
+    let minutesOfClock = (clock.Minutes + minutes) % 60
+    { Hours = hours; Minutes = minutesOfClock }
 
 let private subtractHours current amount = 
     match amount > current with
