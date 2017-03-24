@@ -94,6 +94,12 @@
     <Compile Include="pangram\Pangram.fs" />
     <Compile Include="pangram\PangramTest.fs" />
     <None Include="pangram\README.md" />
+    <Compile Include="etl\ETL.fs" />
+    <Compile Include="etl\ETLTest.fs" />
+    <None Include="etl\README.md" />
+    <Compile Include="clock\Clock.fs" />
+    <Compile Include="clock\ClockTest.fs" />
+    <None Include="clock\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
