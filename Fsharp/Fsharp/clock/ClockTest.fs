@@ -93,3 +93,9 @@ let ``Overflown clocks with same time are equal`` () =
     let clock1 = mkClock 14 30
     let clock2 = mkClock 38 30
     Assert.That(clock1, Is.EqualTo(clock2))
+
+[<Test>]   
+let ``Can subtract hours`` () =
+    let clock = mkClock 5 0
+    let subtracted = clock |> subtract 1800
+    Assert.That(display subtracted, Is.EqualTo("23:00"))
