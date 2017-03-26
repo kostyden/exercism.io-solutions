@@ -1,33 +1,24 @@
 ﻿module Clock
 
-open System
-
 type Clock = { Hours: int; Minutes: int }
 
-let private toDateTime clock = 
-    (new DateTime(0L)).AddHours(float clock.Hours).AddMinutes(float clock.Minutes)
-
-let private toClock (dateTime: DateTime) = 
-    { Hours = dateTime.Hour; Minutes = dateTime.Minute }
-
-let private addMinutes minutes (dateTime: DateTime) = 
-    dateTime.AddMinutes (float minutes)
-
 let mkClock hour minute = 
-    let dateTime = (new DateTime(0L)).AddHours(float hour).AddMinutes(float minute)
-    dateTime |> toClock
+    { Hours = (hour + minute / 60) % 24; Minutes = minute % 60 }
 
 let add minutes clock = 
-    clock
-    |> toDateTime
-    |> addMinutes minutes
-    |> toClock
+    let hours = (clock.Hours + ((clock.Minutes + minutes) / 60)) % 24
+    let minutesOfClock = (clock.Minutes + minutes) % 60
+    { Hours = hours; Minutes = minutesOfClock }
+
+let private subtractHours current amount = 
+    match amount > current with
+    | false -> current - amount
+    | true -> 24 - ((amount - current) % 24)
 
 let subtract minutes clock = 
-    clock
-    |> toDateTime
-    |> addMinutes -minutes
-    |> toClock
+    match minutes > clock.Minutes with
+    | false -> { clock with Minutes = clock.Minutes - minutes }
+    | true -> { Hours = subtractHours clock.Hours (1 + (minutes - clock.Minutes) / 60); Minutes = 60 - ((minutes - clock.Minutes) % 60) }
 
 let display clock = 
     sprintf "%02i:%02i" clock.Hours clock.Minutes
