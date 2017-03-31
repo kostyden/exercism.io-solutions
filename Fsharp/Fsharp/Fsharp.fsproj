@@ -100,6 +100,8 @@
     <Compile Include="clock\Clock.fs" />
     <Compile Include="clock\ClockTest.fs" />
     <None Include="clock\README.md" />
+    <Compile Include="beer-song\BeerSong.fs" />
+    <Compile Include="beer-song\BeerSongTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
