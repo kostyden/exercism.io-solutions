@@ -1,46 +1,52 @@
 ﻿module Clock
 
 [<Literal>]
-let HOURS_MAX = 24
+let HOURS_PER_DAY = 24
 
 [<Literal>]
-let MINUTES_MAX = 60
+let MINUTES_PER_HOUR = 60
+
+let MINUTES_PER_DAY = MINUTES_PER_HOUR * HOURS_PER_DAY
 
 type Clock = { Hours: int; Minutes: int }
 
-let private minutesToHours minutes = minutes / MINUTES_MAX
+let private addHours hours minutes  = minutes + hours * MINUTES_PER_HOUR
 
-let private remainMinutes minutes = minutes % MINUTES_MAX
+let private addMinutes first second = first + second
 
-let private remainHours hours = hours % HOURS_MAX
+let private subtractMinutes subtrahend minuend = minuend - subtrahend
 
-let private sumHours first second = 
-    (first + second) |> remainHours
+let private toMinutes clock = clock.Hours * MINUTES_PER_HOUR + clock.Minutes
 
-let mkClock hour minute = 
-    { Hours = minute |> minutesToHours |> sumHours hour; Minutes = minute |> remainMinutes }
+let private toMinutesOfDay minutes = 
+    let remainMinutesOfDay = minutes % MINUTES_PER_DAY
+    match remainMinutesOfDay >= 0 with
+    | true -> 0 + remainMinutesOfDay
+    | false -> MINUTES_PER_DAY + remainMinutesOfDay
 
-let add minutes clock = 
-    let totalMinutes = (clock.Minutes + minutes)
-    { 
-        Hours = totalMinutes |> minutesToHours |> sumHours clock.Hours; 
-        Minutes = totalMinutes |> remainMinutes
+let private toClock minutes =     
+    let minutesOfDay = toMinutesOfDay minutes
+    {
+        Hours = minutesOfDay / MINUTES_PER_HOUR;
+        Minutes = minutesOfDay % MINUTES_PER_HOUR
     }
 
-let private subtractHours current amount = 
-    match amount > current with
-    | true -> 24 - ((amount - current) % 24)
-    | false -> current - amount
+let mkClock hours minutes = 
+    minutes 
+    |> addHours hours 
+    |> toClock
 
-let private subtractMinutes current amount = 
-    match amount > current with
-    | true -> 60 - ((amount - current) % 60)  
-    | false -> current - amount
+let add minutes clock = 
+    clock 
+    |> toMinutes 
+    |> addMinutes minutes 
+    |> toClock
 
 let subtract minutes clock =
-    match minutes > clock.Minutes with
-    | true -> { Hours = subtractHours clock.Hours (1 + (minutes - clock.Minutes) / 60); Minutes = subtractMinutes clock.Minutes minutes }
-    | false -> { clock with Minutes = subtractMinutes clock.Minutes minutes }
+    clock
+    |> toMinutes
+    |> subtractMinutes minutes
+    |> toClock
 
 let display clock = 
     sprintf "%02i:%02i" clock.Hours clock.Minutes

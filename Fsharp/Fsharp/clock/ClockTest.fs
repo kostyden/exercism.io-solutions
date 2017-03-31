@@ -99,3 +99,9 @@ let ``Can subtract hours`` () =
     let clock = mkClock 5 0
     let subtracted = clock |> subtract 1800
     Assert.That(display subtracted, Is.EqualTo("23:00"))
+
+
+[<Test>]   
+let ``Can subtract day`` () =
+    let clock = mkClock 0 1440
+    Assert.That(display clock, Is.EqualTo("00:00"))
