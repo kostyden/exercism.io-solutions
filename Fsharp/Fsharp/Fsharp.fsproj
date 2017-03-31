@@ -102,6 +102,7 @@
     <None Include="clock\README.md" />
     <Compile Include="beer-song\BeerSong.fs" />
     <Compile Include="beer-song\BeerSongTest.fs" />
+    <None Include="beer-song\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
